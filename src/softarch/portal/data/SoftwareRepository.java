@@ -20,10 +20,11 @@ public class SoftwareRepository extends RegularData {
 	/**
 	 * Creates a new software repository.
 	 */
-	public SoftwareRepository(	Date	dateAdded,
+	public SoftwareRepository(
+			        Date	dateAdded,
 					String	author,
 					String	name,
-					URL	url) {
+					URL	    url) {
 
 		this.dateAdded	= dateAdded;
 		this.author	= author;

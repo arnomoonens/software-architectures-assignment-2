@@ -37,8 +37,7 @@ public class RegularDatabase extends Database {
 	 * Returns a list containing all records of the given information type
 	 * that match the given query string.
 	 */
-	public List findRecords(String informationType, String queryString)
-		throws DatabaseException {
+	public List findRecords(String informationType, String queryString) throws DatabaseException {
 
 		queryString = "%" + queryString + "%";
 		

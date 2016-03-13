@@ -1,8 +1,11 @@
 package softarch.portal.data;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.json.simple.JSONObject;
+
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashMap; 
 import java.util.Map;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,11 +16,7 @@ import java.text.ParseException;
  * @author Niels Joncheere
  */
 public class FreeSubscription extends RegularUser {
-	/**
-	 * Creates a new <i>free subscription</i> account from a
-	 * <code>javax.servlet.http.HttpServletRequest</code> object.
-	 * @see javax.servlet.http.HttpServletRequest
-	 */
+	
 	public FreeSubscription(HttpServletRequest request) {
 		this(	request.getParameter("Username"),
 			request.getParameter("Password"),
@@ -27,11 +26,6 @@ public class FreeSubscription extends RegularUser {
 			new Date());
 	}
 
-	/**
-	 * Creates a new <i>free subscription</i> account from a
-	 * <code>java.sql.ResultSet</code> object.
-	 * @see java.sql.ResultSet
-	 */
 	public FreeSubscription(ResultSet rs)
 		throws SQLException, ParseException {
 
@@ -42,11 +36,12 @@ public class FreeSubscription extends RegularUser {
 		this.emailAddress	= rs.getString("EmailAddress");
 		this.lastLogin		= df.parse(rs.getString("LastLogin"));
 	}
-
+	
 	/**
 	 * Creates a new <i>free subscription</i> account.
 	 */
-	public FreeSubscription(	String	username,
+	public FreeSubscription(
+			        String	username,
 					String	password,
 					String	firstName,
 					String	lastName,
@@ -61,9 +56,6 @@ public class FreeSubscription extends RegularUser {
 		this.lastLogin		= lastLogin;
 	}
 
-	/**
-	 * Returns an XML representation of the object.
-	 */
 	public String asXml() {
 		return	"<FreeSubscription>" +
 			"<username>" + normalizeXml(username) + "</username>" +
@@ -80,10 +72,6 @@ public class FreeSubscription extends RegularUser {
 			"</FreeSubscription>";
 	}
 
-	/**
-	 * Returns an SQL INSERT string that allows the system to add
-	 * the account to a relational database.
-	 */
 	public String asSql() {
 		return	"INSERT INTO FreeSubscription (Username, Password, " +
 			"FirstName, LastName, EmailAddress, LastLogin) " +
@@ -95,10 +83,6 @@ public class FreeSubscription extends RegularUser {
 			df.format(lastLogin) + "\');";
 	}
 
-	/**
-	 * Returns an SQL UPDATE string that allows the system to update
-	 * the account in a relational database.
-	 */
 	public String asSqlUpdate() {
 		return	"UPDATE FreeSubscription SET Password = \'" +
 			normalizeSql(password) + "\', FirstName = \'" +

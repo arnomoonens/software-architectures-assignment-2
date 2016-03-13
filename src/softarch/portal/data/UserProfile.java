@@ -28,12 +28,6 @@ public abstract class UserProfile extends Data {
 	 */
 	public abstract String getDefaultPage();
 
-	/**
-	 * Returns an SQL UPDATE string that allows the system to update
-	 * the account in a relational database.
-	 */
-	public abstract String asSqlUpdate();
-
 	public String getUsername() {
 		return username;
 	}

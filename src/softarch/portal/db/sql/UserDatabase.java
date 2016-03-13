@@ -35,14 +35,15 @@ public class UserDatabase extends Database {
 	 */
 	public void insert(UserProfile profile)
 		throws DatabaseException {
+		
 //		executeSql(profile.asSql());
 		Map<String, String> data = profile.asInsertData();
 		String query = "INSERT INTO " + profile.getClass().getSimpleName() + " ";
 		String names = "(";
 		String values = "(";
 		Boolean first = true;
-		for(Map.Entry<String, String> entry : data.entrySet()) {
-			if(!first) {
+		for  (Map.Entry<String, String> entry : data.entrySet()) {
+			if (!first) {
 				names += ", ";
 				values += ", ";
 			} else {
@@ -63,7 +64,20 @@ public class UserDatabase extends Database {
 	public void update(UserProfile profile)
 		throws DatabaseException {
 		
-		executeSql(profile.asSqlUpdate());
+		//executeSql(profile.asSqlUpdate());
+		Map<String, String> data = profile.asInsertData();
+		String query = "UPDATE " + profile.getClass().getSimpleName() + " SET ";
+		Boolean first = true;
+		for (Map.Entry<String, String> entry : data.entrySet()) {
+			if (!first) {
+				query += ", ";
+			} else {
+				first = false;
+			}
+			query += entry.getKey() + " = \'" + entry.getValue() + "\'";
+		}
+		query += " WHERE Username = \'" + data.get("Username") + "\';";
+		executeSql(query);
 	}
 
 	/**
