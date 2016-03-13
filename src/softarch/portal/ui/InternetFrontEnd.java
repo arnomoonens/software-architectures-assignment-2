@@ -114,7 +114,6 @@ public class InternetFrontEnd extends HttpServlet {
 			fullPath = pathArr[0] + "web_portal";
 
 		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
