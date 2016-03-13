@@ -1,1 +1,4 @@
 /build/
+/DB/web_portal.lck
+/DB/web_portal.log
+/DB/web_portal.script

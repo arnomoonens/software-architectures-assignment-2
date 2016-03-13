@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents an <i>external administrator</i> user account.
@@ -90,5 +92,8 @@ public class ExternalAdministrator extends Administrator {
 			normalizeSql(emailAddress) + "\', LastLogin = \'" +
 			df.format(lastLogin) + "\' " + "WHERE Username = \'" +
 			normalizeSql(username) + "\';";
+	}
+	public Map<String, String> asInsertData() {
+		throw new Error("Not implemented");
 	}
 }

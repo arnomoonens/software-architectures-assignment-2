@@ -12,16 +12,12 @@ import softarch.portal.db.sql.DatabaseException;
 
 
 public class Database {
-	protected String dbUser;
-	protected String dbPassword;
 	protected String dbUrl;
 
 	/**
 	 * Creates a new database.
 	 */
-	public Database(String dbUser, String dbPassword, String dbUrl) {
-		this.dbUser	= dbUser;
-		this.dbPassword	= dbPassword;
+	public Database(String dbUrl) {
 		this.dbUrl	= dbUrl;
 	}
 	

@@ -15,6 +15,8 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.Map;
+
 
 /**
  * This class encapsulates the user database.
@@ -33,8 +35,26 @@ public class UserDatabase extends Database {
 	 */
 	public void insert(UserProfile profile)
 		throws DatabaseException {
-		
-		executeSql(profile.asSql());
+//		executeSql(profile.asSql());
+		Map<String, String> data = profile.asInsertData();
+		String query = "INSERT INTO " + profile.getClass().getSimpleName() + " ";
+		String names = "(";
+		String values = "(";
+		Boolean first = true;
+		for(Map.Entry<String, String> entry : data.entrySet()) {
+			if(!first) {
+				names += ", ";
+				values += ", ";
+			} else {
+				first = false;
+			}
+			names += entry.getKey();
+			values += "\'" + entry.getValue() + "\'";
+		}
+		names += ")";
+		values += ")";
+		query += names + " VALUES " + values + ";";
+		executeSql(query);
 	}
 
 	/**

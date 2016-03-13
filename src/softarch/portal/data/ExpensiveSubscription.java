@@ -2,6 +2,8 @@ package softarch.portal.data;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -105,5 +107,16 @@ public class ExpensiveSubscription extends RegularUser {
 	                normalizeSql(emailAddress) + "\', LastLogin = \'" +
 			df.format(lastLogin) + "\' " + "WHERE Username = \'" +
 			normalizeSql(username) + "\';";
+	}
+	
+	public Map<String, String> asInsertData() {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("FirstName", firstName);
+		map.put("LastName", lastName);
+		map.put("Username", username);
+		map.put("Password", password);
+		map.put("EmailAddress", emailAddress);
+		map.put("LastLogin", df.format(lastLogin));
+		return map;
 	}
 }

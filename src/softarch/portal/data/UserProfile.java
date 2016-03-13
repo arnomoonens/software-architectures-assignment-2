@@ -1,6 +1,7 @@
 package softarch.portal.data;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * This is an abstract superclass for all user profiles.
@@ -19,6 +20,7 @@ public abstract class UserProfile extends Data {
 	 * to a relational database.
 	 */
 	public abstract String asSql();
+	public abstract Map<String, String> asInsertData();
 
 	/**
 	 * When a user has logged in successfully, he will be
