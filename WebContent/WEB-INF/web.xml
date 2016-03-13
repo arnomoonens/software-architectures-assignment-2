@@ -20,6 +20,10 @@
 			<param-name>stylesheet</param-name>
 			<param-value>/web_portal.xsl</param-value>
 		</init-param>
+		<init-param>
+			<param-name>db_type</param-name>
+			<param-value>sql</param-value>
+		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>web_portal</servlet-name>

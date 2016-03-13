@@ -117,6 +117,7 @@ public class InternetFrontEnd extends HttpServlet {
 			e1.printStackTrace();
 		}
 
+		String dbType = getInitParameter("db_type");
 		String dbUser = getInitParameter("db_user");
 		String dbPassword = getInitParameter("db_pass");
 		String dbUrl = fullPath+getInitParameter("db_url");
@@ -128,7 +129,7 @@ public class InternetFrontEnd extends HttpServlet {
 		properties.put("dbUrl", dbUser);
 		properties.put("stylesheet", stylesheet);
 
-		ApplicationFacade appFacade = new ApplicationFacade(dbUser, dbPassword, dbUrl);
+		ApplicationFacade appFacade = new ApplicationFacade(dbType, dbUser, dbPassword, dbUrl);
 
 		pages.put("Registration", new RegistrationPage(appFacade));
 		pages.put("Login", new LoginPage(appFacade));

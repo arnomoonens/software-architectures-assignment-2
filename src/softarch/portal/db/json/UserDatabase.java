@@ -16,4 +16,14 @@ public class UserDatabase extends Database {
 		// TODO Auto-generated constructor stub
 	}
 
+	public void insert(UserProfile profile) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public UserProfile findUser(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

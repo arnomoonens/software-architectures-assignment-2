@@ -4,7 +4,7 @@ import java.util.Map;
 
 import softarch.portal.data.UserProfile;
 import softarch.portal.db.sql.DatabaseException;
-import softarch.portal.db.sql.DatabaseFacade;
+import softarch.portal.db.DatabaseFacade;
 
 import java.util.Hashtable;
 import java.util.List;

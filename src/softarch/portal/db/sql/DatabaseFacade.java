@@ -11,7 +11,7 @@ import java.util.Date;
  * This class implements a facade for all of the database layer's functionality.
  * @author Niels Joncheere
  */
-public class DatabaseFacade {
+public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 	private UserDatabase	userDb;
 	private RegularDatabase	regularDb;
 	private RawDatabase	    rawDb;

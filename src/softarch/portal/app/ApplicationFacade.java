@@ -3,7 +3,6 @@ package softarch.portal.app;
 import softarch.portal.data.RawData;
 import softarch.portal.data.RegularData;
 import softarch.portal.data.UserProfile;
-import softarch.portal.db.sql.DatabaseFacade;
 
 import java.util.List;
 import java.util.Date;
@@ -24,9 +23,17 @@ public class ApplicationFacade {
 	/**
 	 * Creates a new application facade.
 	 */
-	public ApplicationFacade(String dbUser, String dbPassword, String dbUrl) {
+	public ApplicationFacade(String dbType, String dbUser, String dbPassword, String dbUrl) {
 
-		DatabaseFacade dbFacade = new DatabaseFacade(dbUser, dbPassword, dbUrl);
+		softarch.portal.db.DatabaseFacade dbFacade = null;
+		
+		if(dbType.equals("sql")) {
+			dbFacade = new softarch.portal.db.sql.DatabaseFacade(dbUser, dbPassword, dbUrl);
+		} else if (dbType.equals("json")) {
+			dbFacade = new softarch.portal.db.json.DatabaseFacade(dbUser, dbPassword, dbUrl);
+		} else {
+			throw new Error("Not a valid database type given: " + dbType);
+		}
 
 		userManager = new UserManager(dbFacade);
 		queryManager = new QueryManager(dbFacade);

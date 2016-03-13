@@ -15,6 +15,7 @@ public class TestGetActiveUsers {
 	public static void main(String[] args) {
 		try {
 			ApplicationFacade appFacade = new ApplicationFacade(
+				"",
 				"njonchee",
 				"chivas12",
 				"localhost/njonchee");

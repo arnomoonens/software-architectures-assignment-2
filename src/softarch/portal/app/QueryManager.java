@@ -3,7 +3,7 @@ package softarch.portal.app;
 import java.util.List;
 
 import softarch.portal.db.sql.DatabaseException;
-import softarch.portal.db.sql.DatabaseFacade;
+import softarch.portal.db.DatabaseFacade;
 
 import java.util.Date;
 

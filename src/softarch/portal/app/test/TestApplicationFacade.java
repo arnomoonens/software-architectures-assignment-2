@@ -20,6 +20,7 @@ public class TestApplicationFacade {
 				"niels@joncheere.be",
 				new Date());
 			ApplicationFacade appFacade = new ApplicationFacade(
+				"",
 				"njonchee",
 				"chivas12",
 				"localhost/njonchee");
