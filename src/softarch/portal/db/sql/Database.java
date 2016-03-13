@@ -52,7 +52,6 @@ public class Database {
 									"jdbc:hsqldb:" + dbUrl,
 									dbUser,
 									dbPassword);
-		
 		return dbConnection;
 	}
 
@@ -62,8 +61,6 @@ public class Database {
 	 */
 	public void executeSql(String query)
 		throws DatabaseException {
-
-		
 
 		// Connect to the database:
 		try {

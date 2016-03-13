@@ -14,7 +14,7 @@ import java.util.Date;
 public class DatabaseFacade {
 	private UserDatabase	userDb;
 	private RegularDatabase	regularDb;
-	private RawDatabase	rawDb;
+	private RawDatabase	    rawDb;
 
 	/**
 	 * Creates a new database facade.

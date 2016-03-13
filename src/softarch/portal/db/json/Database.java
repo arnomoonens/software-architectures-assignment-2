@@ -1,28 +1,90 @@
-/**
- * 
- */
 package softarch.portal.db.json;
-import org.json.simple.JSONObject;
 
-/**
- * @author Arno Moonens
- *
- */
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.IOException;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.json.simple.JSONArray;
+
+import softarch.portal.db.sql.DatabaseException;
+
+
 public class Database {
+	protected String dbUser;
+	protected String dbPassword;
+	protected String dbUrl;
 
 	/**
-	 * @param args
+	 * Creates a new database.
 	 */
-	public static void main(String[] args) {
-		JSONObject obj = new JSONObject();
-
-		obj.put("name", "foo");
-		obj.put("num", new Integer(100));
-		obj.put("balance", new Double(1000.21));
-		obj.put("is_vip", new Boolean(true));
-
-		System.out.print(obj);
-
+	public Database(String dbUser, String dbPassword, String dbUrl) {
+		this.dbUser	= dbUser;
+		this.dbPassword	= dbPassword;
+		this.dbUrl	= dbUrl;
+	}
+	
+	public FileWriter writeConnection() throws IOException, DatabaseException {
+		FileWriter file;
+		try {
+			file = new FileWriter(this.dbUrl);
+		} catch (IOException e) {
+			throw new DatabaseException(
+					"Unable to open a write connection!");
+		}
+		return file;
+	}
+	
+	public FileReader readConnection() throws IOException, DatabaseException {
+		FileReader file;
+		try {
+			file = new FileReader(this.dbUrl);
+		} catch (IOException e) {
+			throw new DatabaseException(
+					"Unable to open a read connection!");
+		}
+		return file;
+	}
+	
+	public void writeObject(JSONObject obj) throws IOException, DatabaseException {
+		FileWriter file = this.writeConnection();
+		file.write(obj.toJSONString());
+		file.flush();
+		file.close();
+	}
+	
+	public void writeArray(JSONArray arr) throws IOException, DatabaseException {
+		FileWriter file = this.writeConnection();
+		file.write(arr.toJSONString());
+		file.flush();
+		file.close();
+	}
+	
+	public JSONObject readObject() throws IOException, DatabaseException {
+		FileReader file = this.readConnection();
+		JSONParser parser = new JSONParser();
+		JSONObject obj;
+		try {
+			obj = (JSONObject) parser.parse(file);
+		} catch (ParseException e) {
+			throw new DatabaseException(
+					"Could not parse file!");
+		}
+		return obj;
+	}
+	
+	public JSONArray readArray() throws IOException, DatabaseException {
+		FileReader file = this.readConnection();
+		JSONParser parser = new JSONParser();
+		JSONArray arr;
+		try {
+			arr = (JSONArray) parser.parse(file);
+		} catch (ParseException e) {
+			throw new DatabaseException(
+					"Could not parse file!");
+		}
+		return arr;
 	}
 
 }
