@@ -129,5 +129,18 @@ public class UserDatabase extends Database {
 					"Parse Exception: " + e.getMessage());
 		}
 	}
+
+	public boolean userExists(String username) throws DatabaseException {
+		JSONObject content = super.readObject();
+		JSONArray users = (JSONArray) content.get("users");
+		Iterator it = users.iterator();
+		while(it.hasNext()) {
+			JSONObject user = (JSONObject) it.next();
+			if (user.get("Username").equals(username)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 }

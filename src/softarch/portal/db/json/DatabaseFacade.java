@@ -54,10 +54,11 @@ public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 
 	/**
 	 * Checks whether a user with the specified username exists.
+	 * @throws DatabaseException 
 	 */
-	public boolean userExists(String username) {
+	public boolean userExists(String username) throws DatabaseException {
 
-		throw new Error("Not implemented.");
+		return userDb.userExists(username);
 	}
 
 	/**
