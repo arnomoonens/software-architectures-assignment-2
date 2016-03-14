@@ -38,9 +38,10 @@ public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 	/**
 	 * Updates an existing user profile in the user database.
 	 */
-	public void update(UserProfile profile) {
+	public void update(UserProfile profile)
+		throws DatabaseException {
 
-		throw new Error("Not implemented.");
+		userDb.update(profile);
 	}
 
 	/**

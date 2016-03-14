@@ -142,5 +142,25 @@ public class UserDatabase extends Database {
 		}
 		return false;
 	}
+
+	public void update(UserProfile profile) throws DatabaseException {
+		JSONObject content = super.readObject();
+		JSONArray users = (JSONArray) content.get("users");
+		Iterator it = users.iterator();
+		while(it.hasNext()) {
+			JSONObject user = (JSONObject) it.next();
+			if (user.get("Username").equals(profile.getUsername())) {
+				Map<String, String> data = profile.asInsertData();
+				user.put("Username", data.get("Username"));
+				user.put("Password", data.get("Password"));
+				user.put("FirstName", data.get("FirstName"));
+				user.put("LastName", data.get("LastName"));
+				user.put("EmailAddress", data.get("EmailAddress"));
+				content.put("users", users);
+				return;
+			}
+		}
+	return;	
+	}
 	
 }
