@@ -36,7 +36,6 @@ public class UserDatabase extends Database {
 	public void insert(UserProfile profile)
 		throws DatabaseException {
 		
-//		executeSql(profile.asSql());
 		Map<String, String> data = profile.asInsertData();
 		String query = "INSERT INTO " + profile.getClass().getSimpleName() + " ";
 		String names = "(";
@@ -64,7 +63,6 @@ public class UserDatabase extends Database {
 	public void update(UserProfile profile)
 		throws DatabaseException {
 		
-		//executeSql(profile.asSqlUpdate());
 		Map<String, String> data = profile.asInsertData();
 		String query = "UPDATE " + profile.getClass().getSimpleName() + " SET ";
 		Boolean first = true;
@@ -88,64 +86,52 @@ public class UserDatabase extends Database {
 
 		// Connect to the database:
 		try {
-			Statement statement
-				= getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			Statement statement = getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			ResultSet rs;
 			
 			rs = statement.executeQuery(
-				"SELECT * FROM FreeSubscription WHERE " +
-				"Username = \'" + username + "\';");
-			
+				"SELECT * FROM FreeSubscription WHERE Username = \'" + username + "\';");
 			if (rs.first())
 				return new FreeSubscription(rs);
 
 			rs = statement.executeQuery(
-				"SELECT * FROM CheapSubscription WHERE " +
-				"Username = \'" + username + "\';");
+				"SELECT * FROM CheapSubscription WHERE Username = \'" + username + "\';");
 			if (rs.first())
 				return new CheapSubscription(rs);
 
 			rs = statement.executeQuery(
-				"SELECT * FROM ExpensiveSubscription WHERE " +
-				"Username = \'" + username + "\';");
+				"SELECT * FROM ExpensiveSubscription WHERE Username = \'" + username + "\';");
 			if (rs.first())
 				return new ExpensiveSubscription(rs);
 
 			rs = statement.executeQuery(
-				"SELECT * FROM Operator WHERE " +
-				"Username = \'" + username + "\';");
+				"SELECT * FROM Operator WHERE Username = \'" + username + "\';");
 			if (rs.first())
 				return new Operator(rs);
 
 			rs = statement.executeQuery(
-				"SELECT * FROM ExternalAdministrator WHERE " +
-				"Username = \'" + username + "\';");
+				"SELECT * FROM ExternalAdministrator WHERE Username = \'" + username + "\';");
 			if (rs.first())
 				return new ExternalAdministrator(rs);
 
 			rs = statement.executeQuery(
-				"SELECT * FROM RegularAdministrator WHERE " +
-				"Username = \'" + username + "\';");
+				"SELECT * FROM RegularAdministrator WHERE Username = \'" + username + "\';");
 			if (rs.first())
 				return new RegularAdministrator(rs);
 
 			rs = statement.executeQuery(
-				"SELECT * FROM ExpertAdministrator WHERE " +
-				"Username = \'" + username + "\';");
+				"SELECT * FROM ExpertAdministrator WHERE Username = \'" + username + "\';");
 			if (rs.first())
 				return new ExpertAdministrator(rs);
 
 			throw new DatabaseException("Invalid username!");
 		}
-
 		// Exception handling:
 		catch (SQLException e) {
-			throw new DatabaseException(
-				"SQL Exception: " + e.getMessage());
+			throw new DatabaseException("SQL Exception: " + e.getMessage());
 		}
 		catch (ParseException e) {
-			throw new DatabaseException(
-				"Parse Exception: " + e.getMessage());
+			throw new DatabaseException("Parse Exception: " + e.getMessage());
 		}
 	}
 
@@ -162,44 +148,37 @@ public class UserDatabase extends Database {
 			ResultSet rs;
 			
 			rs = statement.executeQuery(
-				"SELECT * FROM FreeSubscription WHERE " +
-				"Username = \'" + username + "\';");
+				"SELECT * FROM FreeSubscription WHERE Username = \'" + username + "\';");
 			if (rs.first())
 				return true;
 
 			rs = statement.executeQuery(
-				"SELECT * FROM CheapSubscription WHERE " +
-				"Username = \'" + username + "\';");
+				"SELECT * FROM CheapSubscription WHERE Username = \'" + username + "\';");
 			if (rs.first())
 				return true;
 
 			rs = statement.executeQuery(
-				"SELECT * FROM ExpensiveSubscription WHERE " +
-				"Username = \'" + username + "\';");
+				"SELECT * FROM ExpensiveSubscription WHERE Username = \'" + username + "\';");
 			if (rs.first())
 				return true;
 
 			rs = statement.executeQuery(
-				"SELECT * FROM Operator WHERE " +
-				"Username = \'" + username + "\';");
+				"SELECT * FROM Operator WHERE Username = \'" + username + "\';");
 			if (rs.first())
 				return true;
 
 			rs = statement.executeQuery(
-				"SELECT * FROM ExternalAdministrator WHERE " +
-				"Username = \'" + username + "\';");
+				"SELECT * FROM ExternalAdministrator WHERE Username = \'" + username + "\';");
 			if (rs.first())
 				return true;
 
 			rs = statement.executeQuery(
-				"SELECT * FROM RegularAdministrator WHERE " +
-				"Username = \'" + username + "\';");
+				"SELECT * FROM RegularAdministrator WHERE Username = \'" + username + "\';");
 			if (rs.first())
 				return true;
 
 			rs = statement.executeQuery(
-				"SELECT * FROM ExpertAdministrator WHERE " +
-				"Username = \'" + username + "\';");
+				"SELECT * FROM ExpertAdministrator WHERE Username = \'" + username + "\';");
 			if (rs.first())
 				return true;
 

@@ -79,35 +79,6 @@ public class CheapSubscription extends RegularUser {
 			"<lastLogin>" + df.format(lastLogin) + "</lastLogin>" +
 			"</CheapSubscription>";
 	}
-
-	/**
-	 * Returns an SQL INSERT string that allows the system to add
-	 * the account to a relational database.
-	 */
-	public String asSql() {
-		return	"INSERT INTO CheapSubscription (Username, Password, " +
-			"FirstName, LastName, EmailAddress, LastLogin) " +
-			"VALUES (\'" + normalizeSql(username) + "\', \'" +
-			normalizeSql(password) + "\', \'" +
-			normalizeSql(firstName) + "\', \'" +
-			normalizeSql(lastName) + "\', \'" +
-			normalizeSql(emailAddress) + "\', \'" +
-			df.format(lastLogin) + "\');";
-	}
-
-	/**
-	 * Returns an SQL UPDATE string that allows the system to update
-	 * the account in a relational database.
-	 */
-	public String asSqlUpdate() {
-		return  "UPDATE CheapSubscription SET Password = \'" +
-			normalizeSql(password) + "\', FirstName = \'" +
-	                normalizeSql(firstName) + "\', LastName = \'" +
-			normalizeSql(lastName) + "\', EmailAddress = \'" +
-	                normalizeSql(emailAddress) + "\', LastLogin = \'" +
-			df.format(lastLogin) + "\' " + "WHERE Username = \'" +
-			normalizeSql(username) + "\';";
-	}
 	
 	public Map<String, String> asInsertData() {
 		Map<String, String> map = new HashMap<String, String>();

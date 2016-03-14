@@ -1,9 +1,9 @@
 package softarch.portal.db.json;
 
-
 import softarch.portal.data.RawData;
 import softarch.portal.data.RegularData;
 import softarch.portal.data.UserProfile;
+import softarch.portal.db.sql.DatabaseException;
 
 import java.util.List;
 import java.util.Date;
@@ -29,7 +29,8 @@ public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 	/**
 	 * Inserts a new user profile into the user database.
 	 */
-	public void insert(UserProfile profile) {
+	public void insert(UserProfile profile)
+		throws DatabaseException {
 	
 		userDb.insert(profile);
 	}
@@ -45,7 +46,8 @@ public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 	/**
 	 * Returns the user with the specified username.
 	 */
-	public UserProfile findUser(String username) {
+	public UserProfile findUser(String username)
+		throws DatabaseException {
 
 		return userDb.findUser(username);
 	}

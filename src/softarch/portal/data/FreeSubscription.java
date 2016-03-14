@@ -71,27 +71,6 @@ public class FreeSubscription extends RegularUser {
 			"<lastLogin>" + df.format(lastLogin) + "</lastLogin>" +
 			"</FreeSubscription>";
 	}
-
-	public String asSql() {
-		return	"INSERT INTO FreeSubscription (Username, Password, " +
-			"FirstName, LastName, EmailAddress, LastLogin) " +
-			"VALUES (\'" + normalizeSql(username) + "\', \'" +
-			normalizeSql(password) + "\', \'" +
-			normalizeSql(firstName) + "\', \'" +
-			normalizeSql(lastName) + "\', \'" +
-			normalizeSql(emailAddress) + "\', \'" +
-			df.format(lastLogin) + "\');";
-	}
-
-	public String asSqlUpdate() {
-		return	"UPDATE FreeSubscription SET Password = \'" +
-			normalizeSql(password) + "\', FirstName = \'" +
-			normalizeSql(firstName) + "\', LastName = \'" +
-			normalizeSql(lastName) + "\', EmailAddress = \'" +
-			normalizeSql(emailAddress) + "\', LastLogin = \'" +
-			df.format(lastLogin) + "\' " + "WHERE Username = \'" +
-			normalizeSql(username) + "\';";
-	}
 	
 	public Map<String, String> asInsertData() {
 		Map<String, String> map = new HashMap<String, String>();

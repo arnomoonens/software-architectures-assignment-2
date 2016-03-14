@@ -16,10 +16,9 @@ public abstract class UserProfile extends Data {
 	protected	Date	lastLogin;
 
 	/**
-	 * Returns an SQL string that allows the system to add the account
-	 * to a relational database.
+	 * Returns an map that allows the system to add the account
+	 * to any kind of database.
 	 */
-	public abstract String asSql();
 	public abstract Map<String, String> asInsertData();
 
 	/**

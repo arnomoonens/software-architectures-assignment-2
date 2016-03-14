@@ -3,6 +3,8 @@ package softarch.portal.db.json;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -22,7 +24,9 @@ public class Database {
 		this.dbUrl	= dbUrl;
 	}
 	
-	public FileWriter writeConnection() throws IOException, DatabaseException {
+	protected static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	
+	public FileWriter writeConnection() throws DatabaseException {
 		FileWriter file;
 		try {
 			file = new FileWriter(this.dbUrl);
@@ -33,7 +37,7 @@ public class Database {
 		return file;
 	}
 	
-	public FileReader readConnection() throws IOException, DatabaseException {
+	public FileReader readConnection() throws DatabaseException {
 		FileReader file;
 		try {
 			file = new FileReader(this.dbUrl);
@@ -44,21 +48,33 @@ public class Database {
 		return file;
 	}
 	
-	public void writeObject(JSONObject obj) throws IOException, DatabaseException {
+	public void writeObject(JSONObject obj) throws DatabaseException {
 		FileWriter file = this.writeConnection();
-		file.write(obj.toJSONString());
-		file.flush();
-		file.close();
+		try {
+			file.write(obj.toJSONString());
+			file.flush();
+			file.close();
+		} catch (IOException e) {
+			throw new DatabaseException(
+					"Error in writing an object!");
+		}
+		
 	}
 	
-	public void writeArray(JSONArray arr) throws IOException, DatabaseException {
+	public void writeArray(JSONArray arr) throws DatabaseException {
 		FileWriter file = this.writeConnection();
-		file.write(arr.toJSONString());
-		file.flush();
-		file.close();
+		try {
+			file.write(arr.toJSONString());
+			file.flush();
+			file.close();
+		} catch (IOException e) {
+			throw new DatabaseException(
+					"Error in writing an array!");
+		}
+		
 	}
 	
-	public JSONObject readObject() throws IOException, DatabaseException {
+	public JSONObject readObject() throws DatabaseException {
 		FileReader file = this.readConnection();
 		JSONParser parser = new JSONParser();
 		JSONObject obj;
@@ -67,11 +83,14 @@ public class Database {
 		} catch (ParseException e) {
 			throw new DatabaseException(
 					"Could not parse file!");
+		} catch (IOException e) {
+			throw new DatabaseException(
+					"Unable to open a read connection!");
 		}
 		return obj;
 	}
 	
-	public JSONArray readArray() throws IOException, DatabaseException {
+	public JSONArray readArray() throws DatabaseException {
 		FileReader file = this.readConnection();
 		JSONParser parser = new JSONParser();
 		JSONArray arr;
@@ -80,6 +99,9 @@ public class Database {
 		} catch (ParseException e) {
 			throw new DatabaseException(
 					"Could not parse file!");
+		} catch (IOException e) {
+			throw new DatabaseException(
+					"Unable to open a read connection!");
 		}
 		return arr;
 	}

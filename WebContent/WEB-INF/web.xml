@@ -22,7 +22,11 @@
 		</init-param>
 		<init-param>
 			<param-name>db_type</param-name>
-			<param-value>sql</param-value>
+			<param-value>json</param-value>
+		</init-param>
+		<init-param>
+			<param-name>json_url</param-name>
+			<param-value>/JSON/web_portal.json</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
