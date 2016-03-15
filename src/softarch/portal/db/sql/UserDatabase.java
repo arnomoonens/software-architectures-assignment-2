@@ -36,7 +36,7 @@ public class UserDatabase extends Database {
 	public void insert(UserProfile profile)
 		throws DatabaseException {
 		
-		Map<String, String> data = profile.asInsertData();
+		Map<String, String> data = profile.asData();
 		String query = "INSERT INTO " + profile.getClass().getSimpleName() + " ";
 		String names = "(";
 		String values = "(";
@@ -63,7 +63,7 @@ public class UserDatabase extends Database {
 	public void update(UserProfile profile)
 		throws DatabaseException {
 		
-		Map<String, String> data = profile.asInsertData();
+		Map<String, String> data = profile.asData();
 		String query = "UPDATE " + profile.getClass().getSimpleName() + " SET ";
 		Boolean first = true;
 		for (Map.Entry<String, String> entry : data.entrySet()) {

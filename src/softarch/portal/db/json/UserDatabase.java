@@ -23,7 +23,7 @@ public class UserDatabase extends Database {
 	}
 	
 	private JSONObject createJSONProfile(UserProfile profile) {
-		Map<String, String> map = profile.asInsertData();
+		Map<String, String> map = profile.asData();
 		JSONObject JSONProfile = new JSONObject();
 		for(Map.Entry<String, String> entry : map.entrySet()) {
 			JSONProfile.put(entry.getKey(), entry.getValue());
@@ -150,7 +150,7 @@ public class UserDatabase extends Database {
 		while(it.hasNext()) {
 			JSONObject user = (JSONObject) it.next();
 			if (user.get("Username").equals(profile.getUsername())) {
-				Map<String, String> data = profile.asInsertData();
+				Map<String, String> data = profile.asData();
 				user.put("Username", data.get("Username"));
 				user.put("Password", data.get("Password"));
 				user.put("FirstName", data.get("FirstName"));

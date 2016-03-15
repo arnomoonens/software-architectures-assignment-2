@@ -102,7 +102,7 @@ public class Operator extends UserProfile {
 			normalizeSql(username) + "\';";
 	}
 	
-	public Map<String, String> asInsertData() {
+	public Map<String, String> asData() {
 		throw new Error("Not implemented");
 	}
 }

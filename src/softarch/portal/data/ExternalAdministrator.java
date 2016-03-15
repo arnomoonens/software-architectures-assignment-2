@@ -93,7 +93,7 @@ public class ExternalAdministrator extends Administrator {
 			df.format(lastLogin) + "\' " + "WHERE Username = \'" +
 			normalizeSql(username) + "\';";
 	}
-	public Map<String, String> asInsertData() {
+	public Map<String, String> asData() {
 		throw new Error("Not implemented");
 	}
 }

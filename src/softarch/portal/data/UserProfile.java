@@ -16,10 +16,10 @@ public abstract class UserProfile extends Data {
 	protected	Date	lastLogin;
 
 	/**
-	 * Returns an map that allows the system to add the account
-	 * to any kind of database.
+	 * Returns an map that allows the system to add/update the account
+	 * in any kind of database.
 	 */
-	public abstract Map<String, String> asInsertData();
+	public abstract Map<String, String> asData();
 
 	/**
 	 * When a user has logged in successfully, he will be

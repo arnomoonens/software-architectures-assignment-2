@@ -72,7 +72,7 @@ public class FreeSubscription extends RegularUser {
 			"</FreeSubscription>";
 	}
 	
-	public Map<String, String> asInsertData() {
+	public Map<String, String> asData() {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("FirstName", firstName);
 		map.put("LastName", lastName);
