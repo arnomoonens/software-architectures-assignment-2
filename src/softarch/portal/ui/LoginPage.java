@@ -43,7 +43,7 @@ public class LoginPage extends Page {
 	public String doGet(HttpServletRequest request, HttpServletResponse response) {
 		this.id = 1;
 		this.title = "Login Page";
-		this.description = "Using the login form on this page, you can " + "login to SoftLib.";
+		this.description = "Using the login form on this page, you can login to SoftLib.";
 		return makePage("<LoginPage_Get />");
 	}
 

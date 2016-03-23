@@ -1,32 +1,49 @@
-{"users": 
+{"users":
 	[
-		{"Username": "niels",
-	     "Password": "1234",
-	     "FirstName": "Niels",
-	 	 "LastName": "Joncheere",
-	 	 "EmailAddress": "niels@soft",
-	 	 "LastLogin": "2008-02-01 14:32:00",
-	 	 "UserType": "ExpertAdministrator"},
-	 	{"Username": "raghnild",
-	     "Password": "5678",
-	     "FirstName": "Raghnild",
-	 	 "LastName": "Van Der Straeten",
-	 	 "EmailAddress": "raghnild@soft",
-	 	 "LastLogin": "2008-02-01 14:32:00",
-	 	 "UserType": "Operator"},
-	 	{"Username": "bruno",
-	     "Password": "9012",
-	     "FirstName": "Bruno",
-	 	 "LastName": "De Fraine",
-	 	 "EmailAddress": "bruno@soft",
-	 	 "LastLogin": "2008-02-01 14:32:00",
-	 	 "UserType": "ExpensiveSubscription"},
-	 	 {"Username": "test",
-	     "Password": "test",
-	     "FirstName": "test",
-	 	 "LastName": "test",
-	 	 "EmailAddress": "test@soft",
-	 	 "LastLogin": "2008-02-01 14:32:00",
-	 	 "UserType": "FreeSubscription"},
-	] 
+		{
+		"Username":"niels",
+		"FirstName":"Niels",
+		"LastLogin":"2008-02-01 14:32:00",
+		"LastName":"Joncheere",
+		"UserType":"ExpertAdministrator",
+		"EmailAddress":"niels@soft",
+		"Password":"1234"
+		},
+		{
+		"Username":"raghnild",
+		"FirstName":"Raghnild",
+		"LastLogin":"2008-02-01 14:32:00",
+		"LastName":"Van Der Straeten",
+		"UserType":"Operator",
+		"EmailAddress":"raghnild@soft",
+		"Password":"5678"
+		},
+		{
+		"Username":"bruno",
+		"FirstName":"Bruno",
+		"LastLogin":"2008-02-01 14:32:00",
+		"LastName":"De Fraine",
+		"UserType":"ExpensiveSubscription",
+		"EmailAddress":"bruno@soft",
+		"Password":"9012"
+		},
+		{
+		"Username":"test",
+		"FirstName":"test",
+		"LastLogin":"2008-02-01 14:32:00",
+		"LastName":"test",
+		"UserType":"FreeSubscription",
+		"EmailAddress":"test@soft",
+		"Password":"test"
+		},
+		{
+		"Username":"jens",
+		"FirstName":"jens",
+		"LastLogin":"2016-03-23",
+		"LastName":"nevens",
+		"UserType":"FreeSubscription",
+		"EmailAddress":"jnevens@vub.ac.be",
+		"Password":"nevens"
+		}
+	]
 }

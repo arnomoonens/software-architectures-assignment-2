@@ -120,12 +120,7 @@ public class InternetFrontEnd extends HttpServlet {
 		String dbType = getInitParameter("db_type");
 		String dbUser = getInitParameter("db_user");
 		String dbPassword = getInitParameter("db_pass");
-		String dbUrl = null;
-		if (dbType.equals("sql")) {
-			dbUrl = fullPath+getInitParameter("db_url");
-		} else if (dbType.equals("json")) {
-			dbUrl = fullPath+getInitParameter("json_url");
-		}
+		String dbUrl = fullPath+getInitParameter("db_url");
 		String stylesheet = fullPath+getInitParameter("stylesheet");
 
 		properties = new Properties();
