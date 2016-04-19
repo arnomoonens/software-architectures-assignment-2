@@ -79,7 +79,6 @@ public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 		try { //Try to gather results from the webservice...
 			Webservice service = new Webservice();
 			List serviceResults = service.findRecords(informationType, queryString);
-			System.out.println("Number of results: " +  serviceResults.size());
 			results.addAll(serviceResults);
 		} catch(Exception e) {
 			e.printStackTrace();
