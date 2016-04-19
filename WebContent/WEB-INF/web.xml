@@ -6,7 +6,7 @@
 		<servlet-class>softarch.portal.ui.InternetFrontEnd</servlet-class>
 		<init-param>
 			<param-name>db_url</param-name>
-			<param-value>/JSON/web_portal.json</param-value>
+			<param-value>/DB/web_portal;ifexists=true;shutdown=true</param-value>
 		</init-param>
 		<init-param>
 			<param-name>db_user</param-name>
@@ -22,7 +22,7 @@
 		</init-param>
 		<init-param>
 			<param-name>db_type</param-name>
-			<param-value>json</param-value>
+			<param-value>sql</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
