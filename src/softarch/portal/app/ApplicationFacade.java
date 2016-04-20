@@ -5,6 +5,10 @@ import softarch.portal.data.RegularData;
 import softarch.portal.data.UserProfile;
 
 import java.util.List;
+
+import javax.xml.rpc.ServiceException;
+
+import java.net.MalformedURLException;
 import java.util.Date;
 
 /**
@@ -15,7 +19,8 @@ import java.util.Date;
  */
 public class ApplicationFacade {
 	private UserManager userManager;
-	private QueryManager queryManager;
+	private QueryManager localQueryManager;
+	private QueryManager webserviceQueryManager;
 	private AdministrationManager administrationManager;
 	private OperationManager operationManager;
 	private String currentUserName;
@@ -36,7 +41,16 @@ public class ApplicationFacade {
 		}
 
 		userManager = new UserManager(dbFacade);
-		queryManager = new QueryManager(dbFacade);
+		localQueryManager = new QueryManager(dbFacade);
+		try {
+			webserviceQueryManager = new QueryManager(new softarch.portal.db.webservice.DatabaseFacade());
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		administrationManager = new AdministrationManager(dbFacade);
 		operationManager = new OperationManager(dbFacade);
 	}
@@ -105,8 +119,10 @@ public class ApplicationFacade {
 	 *            (for example "+foo -bar").
 	 */
 	public List findRecords(String informationType, String queryString) throws ApplicationException {
-
-		return queryManager.findRecords(informationType, queryString);
+		List webserviceResults = webserviceQueryManager.findRecords(informationType, queryString);
+		List localResults = localQueryManager.findRecords(informationType, queryString);
+		localResults.addAll(webserviceResults);
+		return localResults;
 	}
 
 	/**
@@ -114,8 +130,10 @@ public class ApplicationFacade {
 	 * were added after the given date.
 	 */
 	public List findRecordsFrom(String informationType, Date date) throws ApplicationException {
-
-		return queryManager.findRecordsFrom(informationType, date);
+		List webserviceResults = webserviceQueryManager.findRecordsFrom(informationType, date);
+		List localResults = localQueryManager.findRecordsFrom(informationType, date);
+		localResults.addAll(webserviceResults);
+		return localResults;
 	}
 
 	/**

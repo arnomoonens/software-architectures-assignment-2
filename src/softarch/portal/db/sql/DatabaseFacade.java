@@ -7,8 +7,6 @@ import softarch.portal.data.UserProfile;
 import java.util.List;
 import java.util.Date;
 
-import softarch.portal.db.webservice.Webservice;
-
 /**
  * This class implements a facade for all of the database layer's functionality.
  * @author Niels Joncheere
@@ -38,7 +36,7 @@ public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 	 */
 	public void insert(UserProfile profile)
 		throws DatabaseException {
-	
+
 		userDb.insert(profile);
 	}
 
@@ -75,15 +73,7 @@ public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 	 */
 	public List findRecords(String informationType, String queryString)
 		throws DatabaseException {
-		List results = regularDb.findRecords(informationType, queryString);
-		try { //Try to gather results from the webservice...
-			Webservice service = new Webservice();
-			List serviceResults = service.findRecords(informationType, queryString);
-			results.addAll(serviceResults);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return results;
+		return regularDb.findRecords(informationType, queryString);
 	}
 
 	/**
@@ -92,13 +82,7 @@ public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 	 */
 	public List findRecordsFrom(String informationType, Date date)
 		throws DatabaseException {
-		List results = regularDb.findRecordsFrom(informationType, date);
-		try { //Try to gather results from the webservice...
-			//results.addAll(webservice.findRecords(informationType, date))
-		} catch(Exception e) {
-			
-		}
-		return results;
+		return regularDb.findRecordsFrom(informationType, date);
 	}
 
 	/**
@@ -106,7 +90,7 @@ public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 	 */
 	public void add(RegularData rd)
 		throws DatabaseException {
-	
+
 		regularDb.add(rd);
 	}
 

@@ -1,6 +1,9 @@
 package softarch.portal.db.webservice;
 
 import librarysearch.soft.*;
+import softarch.portal.data.RawData;
+import softarch.portal.data.RegularData;
+import softarch.portal.data.UserProfile;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,10 +18,10 @@ import javax.xml.rpc.ServiceException;
 
 import org.apache.axis.message.MessageElement;
 
-public class Webservice {
+public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 	private LibrarySearchSOAPBindingStub service;
 
-	public Webservice() throws MalformedURLException, ServiceException {
+	public DatabaseFacade() throws MalformedURLException, ServiceException {
 		service = (LibrarySearchSOAPBindingStub) new LibrarySearchServiceLocator()
 				.getLibrarySearchServicePort(new URL("http://localhost:8080/ode/processes/LibrarySearchService"));
 	}
@@ -67,17 +70,80 @@ public class Webservice {
 		return results;
 	}
 
-	public List findRecords(String informationType, String queryString) throws Exception {
+	public List findRecords(String informationType, String queryString) {
 		if (!informationType.equals("Book")) return new ArrayList(); //Return empty list if Books aren't needed
 		LibrarySearchRequest req = new LibrarySearchRequest(queryString);
-		LibrarySearchResponse res = service.process(req);
-		return toBooksList(res.getBooks(), null);
+		LibrarySearchResponse res;
+		try {
+			res = service.process(req);
+			return toBooksList(res.getBooks(), null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
-	public List findRecordsFrom(String informationType, Date date) throws Exception {
+	public List findRecordsFrom(String informationType, Date date) {
 		if (!informationType.equals("Book")) return new ArrayList(); //Return empty list if Books aren't needed
 		LibrarySearchRequest req = new LibrarySearchRequest("");
-		LibrarySearchResponse res = service.process(req);
-		return toBooksList(res.getBooks(), date);
+		LibrarySearchResponse res;
+		try {
+			res = service.process(req);
+			return toBooksList(res.getBooks(), date);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public void insert(UserProfile profile) {
+		throw new Error("Not implemented");
+	}
+
+	public void update(UserProfile profile) {
+		throw new Error("Not implemented");
+	}
+
+	public UserProfile findUser(String username) {
+		throw new Error("Not implemented");
+	}
+
+	public boolean userExists(String username) {
+		throw new Error("Not implemented");
+	}
+
+	public void add(RegularData rd) {
+		throw new Error("Not implemented");
+	}
+
+	public int getNumberOfRegularRecords(String informationType) {
+		throw new Error("Not implemented");
+	}
+
+	public List getRawData() {
+		throw new Error("Not implemented");
+	}
+
+	public RawData getRawData(int id) {
+		throw new Error("Not implemented");
+	}
+
+	public void addRawData(RegularData rd) {
+		throw new Error("Not implemented");
+		
+	}
+
+	public void deleteRawData(RawData rd) {
+		throw new Error("Not implemented");
+		
+	}
+
+	public void updateRawData(RawData rd) {
+		throw new Error("Not implemented");
+		
+	}
+
+	public int getNumberOfRawRecords() {
+		throw new Error("Not implemented");
 	}
 }
