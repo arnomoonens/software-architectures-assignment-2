@@ -26,7 +26,7 @@ public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 				.getLibrarySearchServicePort(new URL("http://localhost:8080/ode/processes/LibrarySearchService"));
 	}
 
-	private List toBooksList(BookList books, Date fromDate) throws Exception {
+	private List toBooksList(BookList books) throws Exception {
 		List results = new ArrayList();
 		for(MessageElement element : books.get_any()) {
 			if(element.getName().equals("searchBooksResponse")) {
@@ -46,9 +46,7 @@ public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 							"",
 							"",
 							book.getTitle());
-					if(fromDate == null || c.getTime().after(fromDate)) {
-						results.add(internalBook);
-					}
+					results.add(internalBook);
 				}
 			} else {
 				be.library.Book book = (be.library.Book) element.getObjectValue(be.library.Book.class);
@@ -62,9 +60,8 @@ public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 						"",
 						"",
 						book.getTitle());
-				if(fromDate == null || book.getDate().getTime().after(fromDate)) {
-					results.add(internalBook);
-				}
+				results.add(internalBook);
+				
 			}
 		}
 		return results;
@@ -76,7 +73,7 @@ public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 		LibrarySearchResponse res;
 		try {
 			res = service.process(req);
-			return toBooksList(res.getBooks(), null);
+			return toBooksList(res.getBooks());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -84,16 +81,7 @@ public class DatabaseFacade implements softarch.portal.db.DatabaseFacade {
 	}
 
 	public List findRecordsFrom(String informationType, Date date) {
-		if (!informationType.equals("Book")) return new ArrayList(); //Return empty list if Books aren't needed
-		LibrarySearchRequest req = new LibrarySearchRequest("");
-		LibrarySearchResponse res;
-		try {
-			res = service.process(req);
-			return toBooksList(res.getBooks(), date);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+		throw new Error("Not implemented");
 	}
 
 	public void insert(UserProfile profile) {

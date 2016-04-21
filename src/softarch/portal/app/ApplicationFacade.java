@@ -130,10 +130,7 @@ public class ApplicationFacade {
 	 * were added after the given date.
 	 */
 	public List findRecordsFrom(String informationType, Date date) throws ApplicationException {
-		List webserviceResults = webserviceQueryManager.findRecordsFrom(informationType, date);
-		List localResults = localQueryManager.findRecordsFrom(informationType, date);
-		localResults.addAll(webserviceResults);
-		return localResults;
+		return localQueryManager.findRecordsFrom(informationType, date);
 	}
 
 	/**
